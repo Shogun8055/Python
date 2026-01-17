@@ -1,0 +1,16 @@
+name = "Rohit"
+age = 24
+height = 5.5
+weight = 50
+bmi = (weight / ((height * 0.3048) ** 2))
+is_student = True
+is_adult = True
+lucky_number = 3
+
+age_in_days = age * 365
+height_in_inches = height * 12
+weight_in_pounds = float(weight * 2.2046)
+status = "Student" if is_student else "Adult"
+adult = "Yes" if is_adult else "No"
+
+print(f"👨 Personal Profile\n====================\nName: {name}\nAge: {age} years ({age_in_days:,} days old!)\nHeight: {height} feet ({height_in_inches} inches)\nWeight: {weight} kg ({weight_in_pounds} lbs)\nBMI: {bmi:.1f}\nStatus: {status}\nAdult: {adult}\nLucky Number: {lucky_number}")
