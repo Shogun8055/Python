@@ -1,0 +1,33 @@
+import requests
+import json
+from datetime import datetime
+
+import dotenv
+dotenv.load_dotenv()
+import os
+
+def GetWeatherDetails(location):
+    # API_key = "f8de491240d0c1ef93ca2580dc1df104"
+    API_key = os.getenv("api_key")
+    lat = 17.38
+    lon = 78.46
+    units = "metric"
+    url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_key}&units={units}"
+    # url = f"http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={API_key}"
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            return data
+        else:
+            if response.status_code == 401:
+                return str(response.status_code) + " -> Unauthorized"
+            if response.status_code == 404:
+                return str(response.status_code) + " -> Not Found"
+            if response.status_code == 500:
+                return str(response.status_code) + " -> Server Error"
+    except Exception as e:
+        return str(e)
+    
+location = GetWeatherDetails("Hyderabad")
+print("temp: " + str(location["main"]["temp"]))
